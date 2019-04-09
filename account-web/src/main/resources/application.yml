@@ -1,0 +1,38 @@
+#日志相关
+#logging.patpath=./logs/
+#
+##mongoDB相关配置
+#spring.data.mongodb.uri=mongodb://DocTool:123456@localhost:27017/DocTool
+#
+## tomcat的URI编码
+#server.tomcat.uri-encoding=UTF-8
+#
+#### xxl-sso
+#sso.redis.address=redis://myRedis:123456@127.0.0.1:6379
+#sso.redis.expire.minite=1440
+#
+#server.port=8080
+#
+#eureka.client.service-url.DEFAULT_ZONE=http://localhost:8761/eureka/,http://localhost:8762/eureka/,http://localhost:8763/eureka/
+#
+#spring.application.name=accountServer
+logging:
+  path: ./logs/
+spring:
+  data:
+    mongodb:
+      uri: mongodb://DocTool:123456@localhost:27019/DocTool
+  application:
+    name: accountService
+server:
+  tomcat:
+    uri-encoding: utf-8
+sso:
+  redis:
+    address: redis://myRedis:123456@127.0.0.1:6379
+    expire:
+      minite: 1440
+eureka:
+  client:
+    service-url:
+      DEFAULT_ZONE: http://localhost:8761/eureka/,http://localhost:8762/eureka/,http://localhost:8763/eureka/
