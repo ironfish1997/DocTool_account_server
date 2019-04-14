@@ -53,11 +53,33 @@ public class AccountOperationController {
     @ApiOperation(value = "删除账户")
     @CheckSessionId
     @NeedAdminAuth
-    @ApiImplicitParams({@ApiImplicitParam(name = "account_id", value = "账号id", required = true, dataType = "string"),})
+    @ApiImplicitParams({@ApiImplicitParam(name = "account_id", value = "账号id", required = true, dataType = "string")})
     public AccountOperationResponse deleteAccount(@RequestHeader String session_id, @RequestParam String account_id, HttpServletResponse response) {
         AccountOperationResponse result = accountService.deleteAccount(account_id);
         response.setStatus(200);
         logger.warn("收到删除用户账户请求，请求删除的账号为==>" + account_id);
+        return result;
+    }
+
+    @GetMapping
+    @ApiOperation(value = "根据account_id查询用户信息")
+    @CheckSessionId
+    @ApiImplicitParams({@ApiImplicitParam(name = "account_id", value = "账号id", required = true, dataType = "string")})
+    public AccountOperationResponse findAccountByAccountId(@RequestHeader String session_id, @RequestParam String account_id, HttpServletResponse response) {
+        AccountOperationResponse result = accountService.findAccountByAccountId(account_id);
+        response.setStatus(200);
+        logger.warn("收到查询用户信息请求，请求查询的账号为==>" + account_id);
+        return result;
+    }
+
+    @GetMapping("/findAllAccount")
+    @ApiOperation(value = "查询所有用户信息")
+    @CheckSessionId
+    @NeedAdminAuth
+    public AccountOperationResponse findAllAccounts(@RequestHeader String session_id,HttpServletResponse response){
+        AccountOperationResponse result = accountService.findAllAccounts();
+        response.setStatus(200);
+        logger.warn("收到查询所有用户信息请求");
         return result;
     }
 }

@@ -1,12 +1,12 @@
 package top.liuliyong.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import top.liuliyong.common.response.AccountOperationResponse;
 import top.liuliyong.common.response.StatusEnum;
 import top.liuliyong.common.util.MD5Encoder;
 import top.liuliyong.dao.impl.AccountUserDao;
 import top.liuliyong.model.Account;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -96,6 +96,30 @@ public class AccountService {
             return new AccountOperationResponse(StatusEnum.LACK_OF_INFORMATION);
         }
         List result = accountUserDao.deleteUser(account_ids);
+        return new AccountOperationResponse(0, "ok", result);
+    }
+
+    /**
+     * 通过账户id查找账户信息
+     *
+     * @param account_id
+     * @return
+     */
+    public AccountOperationResponse findAccountByAccountId(String account_id) {
+        if (account_id == null || account_id.length() == 0) {
+            return new AccountOperationResponse(StatusEnum.LACK_OF_INFORMATION);
+        }
+        Account result = accountUserDao.findByAccountId(account_id);
+        return new AccountOperationResponse(0, "ok", result);
+    }
+
+    /**
+     * 查找所有用户账户信息
+     *
+     * @return
+     */
+    public AccountOperationResponse findAllAccounts() {
+        List result = accountUserDao.findAll();
         return new AccountOperationResponse(0, "ok", result);
     }
 

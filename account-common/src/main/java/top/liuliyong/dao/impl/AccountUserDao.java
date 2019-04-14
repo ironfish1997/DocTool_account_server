@@ -9,6 +9,8 @@ import top.liuliyong.model.Account;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
@@ -85,4 +87,11 @@ public class AccountUserDao extends AbstractUserDao<Account> {
         }
     }
 
+    /**
+     * search all users
+     * @return
+     */
+    public List<Account> findAll(){
+       return StreamSupport.stream(super.findAll().spliterator(), false) .collect(Collectors.toList());
+    }
 }
