@@ -76,7 +76,7 @@ public class AccountOperationController {
     @ApiOperation(value = "查询所有用户信息")
     @CheckSessionId
     @NeedAdminAuth
-    public AccountOperationResponse findAllAccounts(@RequestHeader String session_id,HttpServletResponse response){
+    public AccountOperationResponse findAllAccounts(@RequestHeader String session_id, HttpServletResponse response) {
         AccountOperationResponse result = accountService.findAllAccounts();
         response.setStatus(200);
         logger.warn("收到查询所有用户信息请求");
