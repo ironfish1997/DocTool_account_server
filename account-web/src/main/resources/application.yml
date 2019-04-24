@@ -23,7 +23,7 @@ spring:
     mongodb:
       uri: mongodb://DocTool:123456@localhost:27019/DocTool
   application:
-    name: accountService
+    name: account-service
 server:
   tomcat:
     uri-encoding: utf-8

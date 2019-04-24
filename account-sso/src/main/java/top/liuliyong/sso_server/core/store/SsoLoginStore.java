@@ -1,8 +1,8 @@
 package top.liuliyong.sso_server.core.store;
 
-import top.liuliyong.sso_server.config.SSOConf;
-import top.liuliyong.model.XxlSsoUser;
 import top.liuliyong.common.util.JedisUtil;
+import top.liuliyong.model.XxlSsoUser;
+import top.liuliyong.sso_server.config.SSOConf;
 
 /**
  * local login store
