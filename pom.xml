@@ -5,10 +5,11 @@
     <packaging>pom</packaging>
     <modules>
         <module>account-common</module>
-        <module>account-sso</module>
         <module>account-web</module>
         <module>account-manage</module>
         <module>account-sms</module>
+        <module>account-sso</module>
+        <module>account-feignClient</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -27,48 +28,42 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <account-common.version>0.0.1-SNAPSHOT</account-common.version>
+        <account-sso.version>0.0.1-SNAPSHOT</account-sso.version>
+        <tomcat.version>8.5.37</tomcat.version>
     </properties>
 
     <dependencies>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <!-- mongodb -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
-
         <!-- redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-
         <!-- Swagger -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>2.9.2</version>
         </dependency>
-
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
-
         <!-- 解析json使用阿里巴巴的fastjson-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -80,7 +75,6 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>2.1.3.RELEASE</version>
         </dependency>
-
         <!-- jedis -->
         <dependency>
             <groupId>redis.clients</groupId>
@@ -113,16 +107,27 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>top.liuliyong</groupId>
+                <artifactId>account-common</artifactId>
+                <version>${account-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.liuliyong</groupId>
+                <artifactId>account-sso</artifactId>
+                <version>${account-sso.version}</version>
+                <scope>compile</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+<!--        <build>-->
+    <!--            <plugins>-->
+    <!--                <plugin>-->
+    <!--                    <groupId>org.springframework.boot</groupId>-->
+    <!--                    <artifactId>spring-boot-maven-plugin</artifactId>-->
+    <!--                </plugin>-->
+    <!--            </plugins>-->
+    <!--        </build>-->
 </project>
