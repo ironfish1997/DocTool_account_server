@@ -1,4 +1,4 @@
-package top.liuliyong.account.account.sso.service.impl;
+package top.liuliyong.account.sso.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,8 +6,8 @@ import top.liuliyong.account.common.response.StatusEnum;
 import top.liuliyong.account.common.util.MD5Encoder;
 import top.liuliyong.account.dao.impl.AccountUserDao;
 import top.liuliyong.account.model.Account;
-import top.liuliyong.account.account.sso.core.result.ReturnT;
-import top.liuliyong.account.account.sso.service.UserService;
+import top.liuliyong.account.sso.core.result.ReturnT;
+import top.liuliyong.account.sso.service.UserService;
 
 /**
  * @Author liyong.liu

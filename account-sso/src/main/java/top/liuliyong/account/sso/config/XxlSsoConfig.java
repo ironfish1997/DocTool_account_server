@@ -1,6 +1,6 @@
-package top.liuliyong.account.account.sso.config;
+package top.liuliyong.account.sso.config;
 
-import top.liuliyong.account.account.sso.core.store.SsoLoginStore;
+import top.liuliyong.account.sso.core.store.SsoLoginStore;
 import top.liuliyong.account.common.util.JedisUtil;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;

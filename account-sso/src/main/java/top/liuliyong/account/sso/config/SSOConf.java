@@ -1,4 +1,4 @@
-package top.liuliyong.account.account.sso.config;
+package top.liuliyong.account.sso.config;
 
 /**
  * conf

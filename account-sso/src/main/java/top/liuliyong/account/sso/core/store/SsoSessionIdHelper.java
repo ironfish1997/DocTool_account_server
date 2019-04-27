@@ -1,4 +1,4 @@
-package top.liuliyong.account.account.sso.core.store;
+package top.liuliyong.account.sso.core.store;
 
 import top.liuliyong.account.model.XxlSsoUser;
 

@@ -1,6 +1,6 @@
-package top.liuliyong.account.account.sso.core.store;
+package top.liuliyong.account.sso.core.store;
 
-import top.liuliyong.account.account.sso.config.SSOConf;
+import top.liuliyong.account.sso.config.SSOConf;
 import top.liuliyong.account.common.util.JedisUtil;
 import top.liuliyong.account.model.XxlSsoUser;
 

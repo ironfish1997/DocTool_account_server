@@ -1,4 +1,4 @@
-package top.liuliyong.account.account.sso.core.result;
+package top.liuliyong.account.sso.core.result;
 
 import lombok.Data;
 import top.liuliyong.account.common.response.StatusEnum;

@@ -1,7 +1,7 @@
-package top.liuliyong.account.account.sso.service;
+package top.liuliyong.account.sso.service;
 
 
-import top.liuliyong.account.account.sso.core.result.ReturnT;
+import top.liuliyong.account.sso.core.result.ReturnT;
 
 import java.io.UnsupportedEncodingException;
 
