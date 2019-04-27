@@ -1,4 +1,4 @@
-package top.liuliyong.interceptor.annotation;
+package top.liuliyong.account.interceptor.annotation;
 
 import java.lang.annotation.*;
 

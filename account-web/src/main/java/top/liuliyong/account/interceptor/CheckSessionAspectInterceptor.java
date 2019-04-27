@@ -1,4 +1,4 @@
-package top.liuliyong.interceptor;
+package top.liuliyong.account.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -10,11 +10,11 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import top.liuliyong.common.exception.AccountOperationException;
-import top.liuliyong.common.response.AccountOperationResponse;
-import top.liuliyong.common.response.StatusEnum;
-import top.liuliyong.controller.SSOAppController;
-import top.liuliyong.model.Account;
+import top.liuliyong.account.common.exception.AccountOperationException;
+import top.liuliyong.account.common.response.AccountOperationResponse;
+import top.liuliyong.account.common.response.StatusEnum;
+import top.liuliyong.account.controller.SSOAppController;
+import top.liuliyong.account.model.Account;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
@@ -34,11 +34,11 @@ public class CheckSessionAspectInterceptor {
     @Autowired
     private SSOAppController ssoAppController;
 
-    @Pointcut("@annotation(top.liuliyong.interceptor.annotation.CheckSessionId)")
+    @Pointcut("@annotation(top.liuliyong.account.interceptor.annotation.CheckSessionId)")
     public void checkSessionId() {
     }
 
-    @Pointcut("@annotation(top.liuliyong.interceptor.annotation.NeedAdminAuth)")
+    @Pointcut("@annotation(top.liuliyong.account.interceptor.annotation.NeedAdminAuth)")
     public void needAdminAuth() {
 
     }

@@ -1,4 +1,4 @@
-package top.liuliyong.controller;
+package top.liuliyong.account.controller;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

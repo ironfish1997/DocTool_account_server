@@ -1,4 +1,4 @@
-package top.liuliyong.dao;
+package top.liuliyong.account.dao;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import top.liuliyong.dao.impl.AccountUserDao;
-import top.liuliyong.model.Account;
+import top.liuliyong.account.dao.impl.AccountUserDao;
+import top.liuliyong.account.model.Account;
 
 import java.util.List;
 

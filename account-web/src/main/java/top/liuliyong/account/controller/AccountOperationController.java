@@ -1,4 +1,4 @@
-package top.liuliyong.controller;
+package top.liuliyong.account.controller;
 
 import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.Api;
@@ -10,10 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import top.liuliyong.common.response.AccountOperationResponse;
-import top.liuliyong.interceptor.annotation.CheckSessionId;
-import top.liuliyong.interceptor.annotation.NeedAdminAuth;
-import top.liuliyong.model.Account;
+import top.liuliyong.account.interceptor.annotation.CheckSessionId;
+import top.liuliyong.account.interceptor.annotation.NeedAdminAuth;
+import top.liuliyong.account.common.response.AccountOperationResponse;
+import top.liuliyong.account.model.Account;
 import top.liuliyong.account.service.AccountService;
 
 import javax.servlet.http.HttpServletResponse;
