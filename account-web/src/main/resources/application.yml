@@ -3,11 +3,11 @@ logging:
   level:
     org:
       springframework:
-        web: debug
+#        web: debug
 spring:
   data:
     mongodb:
-      uri: mongodb://DocTool:123456@localhost:27017/DocTool
+      uri: mongodb://DocTool:123456@120.79.79.151:27017/DocTool?maxPoolSize=50&connectTimeoutMS=30000&socketTimeoutMS=3000
   application:
     name: account-service
 server:
@@ -15,7 +15,7 @@ server:
     uri-encoding: utf-8
 sso:
   redis:
-    address: redis://myRedis:123456@127.0.0.1:6379
+    address: redis://myRedis:123456@120.79.79.151:6379
     expire:
       minite: 1440
 eureka:

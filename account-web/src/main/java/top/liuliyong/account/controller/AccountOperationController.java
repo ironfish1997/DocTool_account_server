@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import top.liuliyong.account.common.response.AccountOperationResponse;
 import top.liuliyong.account.interceptor.annotation.CheckSessionId;
 import top.liuliyong.account.interceptor.annotation.NeedAdminAuth;
-import top.liuliyong.account.common.response.AccountOperationResponse;
 import top.liuliyong.account.model.Account;
 import top.liuliyong.account.service.AccountService;
 
@@ -65,9 +65,8 @@ public class AccountOperationController {
     @ApiOperation(value = "根据account_id查询用户信息")
     @CheckSessionId
     @ApiImplicitParams({@ApiImplicitParam(name = "account_id", value = "账号id", required = true, dataType = "string")})
-    public AccountOperationResponse findAccountByAccountId(@RequestHeader String session_id, @RequestParam String account_id, HttpServletResponse response) {
+    public AccountOperationResponse findAccountByAccountId(@RequestHeader String session_id, @RequestParam String account_id) {
         AccountOperationResponse result = accountService.findAccountByAccountId(account_id);
-        response.setStatus(200);
         logger.warn("收到查询用户信息请求，请求查询的账号为==>" + account_id);
         return result;
     }
