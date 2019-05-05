@@ -1,7 +1,8 @@
 package top.liuliyong.account.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import top.liuliyong.account.common.exception.AccountOperationException;
 import top.liuliyong.account.common.response.AccountOperationResponse;
 import top.liuliyong.account.common.response.StatusEnum;
 import top.liuliyong.account.common.util.MD5Encoder;
@@ -18,9 +19,13 @@ import java.util.List;
  * @Date 2019/3/12
  **/
 @Service
+@Slf4j
 public class AccountService {
-    @Autowired
-    AccountUserDao accountUserDao;
+    final AccountUserDao accountUserDao;
+
+    public AccountService(AccountUserDao accountUserDao) {
+        this.accountUserDao = accountUserDao;
+    }
 
     /**
      * 新增账户
@@ -120,6 +125,30 @@ public class AccountService {
      */
     public AccountOperationResponse findAllAccounts() {
         List result = accountUserDao.findAll();
+        return new AccountOperationResponse(0, "ok", result);
+    }
+
+    /**
+     * 根据账号冻结账户
+     */
+    public AccountOperationResponse frozeAccount(String accountId) {
+        if (accountId == null || accountId.trim().length() == 0) {
+            log.error("account_id为空");
+            throw new AccountOperationException(StatusEnum.LACK_OF_INFORMATION);
+        }
+        Account result = accountUserDao.frozeAccount(accountId);
+        return new AccountOperationResponse(0, "ok", result);
+    }
+
+    /**
+     * 根据账号解冻账户
+     */
+    public AccountOperationResponse unfrozeAccount(String accountId) {
+        if (accountId == null || accountId.trim().length() == 0) {
+            log.error("account_id为空");
+            throw new AccountOperationException(StatusEnum.LACK_OF_INFORMATION);
+        }
+        Account result = accountUserDao.unFrozeAccount(accountId);
         return new AccountOperationResponse(0, "ok", result);
     }
 
