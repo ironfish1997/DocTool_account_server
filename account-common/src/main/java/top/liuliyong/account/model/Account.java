@@ -19,7 +19,6 @@ public class Account extends User {
     private String account_id;
     private String account_password;
     private Boolean status;
-    @Indexed
     private List<String> account_permission;
 
     public Account(String name, String area, Contacts contacts, String account_id, String account_password, List<String> account_permission, Object extra_meta) {

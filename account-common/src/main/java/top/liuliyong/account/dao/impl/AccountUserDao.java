@@ -51,9 +51,6 @@ public class AccountUserDao extends AbstractUserDao<Account> {
 
     /**
      * 修改账户信息
-     *
-     * @param account
-     * @return
      */
     @Override
     public Account updateUser(Account account) {
@@ -63,14 +60,14 @@ public class AccountUserDao extends AbstractUserDao<Account> {
         Criteria condition = new Criteria();
         condition.and("account_id").is(account.getAccount_id());
         Query query = new Query(condition);
-        return mongoTemplate.findAndReplace(query, account, getCollection());
+        if (mongoTemplate.findAndReplace(query, account, getCollection()) != null) {
+            return account;
+        }
+        return null;
     }
 
     /**
-     * search for the account information by account_id
-     *
-     * @param account_id
-     * @return
+     * 通过账号查找账号信息
      */
     public Account findByAccountId(String account_id) {
         if (account_id == null || account_id.trim().length() == 0) {
@@ -80,7 +77,7 @@ public class AccountUserDao extends AbstractUserDao<Account> {
         condition.and("account_id").is(account_id);
         Query query = new Query(condition);
         List<Account> resultList = mongoTemplate.find(query, Account.class, getCollection());
-        if (resultList == null || resultList.size() == 0) {
+        if (resultList.size() == 0) {
             return null;
         } else {
             return resultList.get(0);
@@ -88,10 +85,43 @@ public class AccountUserDao extends AbstractUserDao<Account> {
     }
 
     /**
-     * search all users
-     * @return
+     * 搜索所有用户
      */
-    public List<Account> findAll(){
-       return StreamSupport.stream(super.findAll().spliterator(), false) .collect(Collectors.toList());
+    public List<Account> findAll() {
+        return StreamSupport.stream(super.findAll().spliterator(), false).collect(Collectors.toList());
+    }
+
+    /**
+     * 冻结账户
+     */
+    public Account frozeAccount(String accountId) {
+        Account accountToFroze = findByAccountId(accountId);
+        if (accountToFroze == null) {
+            return null;
+        }
+        //如果已经是冻结状态则直接返回
+        if (!accountToFroze.getStatus()) {
+            return accountToFroze;
+        }
+        //更改其状态并更新数据库
+        accountToFroze.setStatus(false);
+        return updateUser(accountToFroze);
+    }
+
+    /**
+     * 解冻账户
+     */
+    public Account unFrozeAccount(String accountId) {
+        Account accountToUnFroze = findByAccountId(accountId);
+        if (accountToUnFroze == null) {
+            return null;
+        }
+        //如果已经是可用状态则直接返回
+        if (accountToUnFroze.getStatus()) {
+            return accountToUnFroze;
+        }
+        //更改其状态并更新数据库
+        accountToUnFroze.setStatus(true);
+        return updateUser(accountToUnFroze);
     }
 }
