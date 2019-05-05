@@ -29,7 +29,7 @@ public class AccountOperationController {
     @Autowired
     AccountService accountService;
 
-    @RequestMapping(value = "", method = {RequestMethod.POST})
+    @PostMapping
     @ApiOperation(value = "新增用户账户")
     public AccountOperationResponse addAccount(@RequestBody Account account, HttpServletResponse response) throws UnsupportedEncodingException {
         AccountOperationResponse result = accountService.addAccount(account);
@@ -38,7 +38,7 @@ public class AccountOperationController {
         return result;
     }
 
-    @RequestMapping(value = "", method = {RequestMethod.PUT})
+    @PutMapping
     @ApiOperation(value = "修改用户账户信息")
     @CheckSessionId
     public AccountOperationResponse updateAccount(@RequestHeader String session_id, @RequestBody Account account, HttpServletResponse response) throws UnsupportedEncodingException {
@@ -49,7 +49,7 @@ public class AccountOperationController {
         return result;
     }
 
-    @RequestMapping(value = "", method = {RequestMethod.DELETE})
+    @DeleteMapping
     @ApiOperation(value = "删除账户")
     @CheckSessionId
     @NeedAdminAuth
@@ -75,10 +75,29 @@ public class AccountOperationController {
     @ApiOperation(value = "查询所有用户信息")
     @CheckSessionId
     @NeedAdminAuth
-    public AccountOperationResponse findAllAccounts(@RequestHeader String session_id, HttpServletResponse response) {
+    public AccountOperationResponse findAllAccounts(@RequestHeader String session_id) {
         AccountOperationResponse result = accountService.findAllAccounts();
-        response.setStatus(200);
         logger.warn("收到查询所有用户信息请求");
+        return result;
+    }
+
+    @GetMapping("/frozeAccount")
+    @ApiOperation(value = "冻结账户")
+    @CheckSessionId
+    @NeedAdminAuth
+    public AccountOperationResponse frozenAccount(@RequestHeader String session_id, @RequestParam("account_id") String accountId) {
+        AccountOperationResponse result = accountService.frozeAccount(accountId);
+        logger.warn("冻结账户:", accountId);
+        return result;
+    }
+
+    @GetMapping("/unFrozeAccount")
+    @ApiOperation(value = "解冻账户")
+    @CheckSessionId
+    @NeedAdminAuth
+    public AccountOperationResponse unFrozenAccount(@RequestHeader String session_id, @RequestParam("account_id") String accountId) {
+        AccountOperationResponse result = accountService.unfrozeAccount(accountId);
+        logger.warn("解冻账户:", accountId);
         return result;
     }
 }
