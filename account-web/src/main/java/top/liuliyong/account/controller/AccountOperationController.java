@@ -7,13 +7,12 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import top.liuliyong.account.common.response.AccountOperationResponse;
 import top.liuliyong.account.interceptor.annotation.CheckSessionId;
 import top.liuliyong.account.interceptor.annotation.NeedAdminAuth;
-import top.liuliyong.account.model.Account;
+import top.liuliyong.account.dao.model.Account;
 import top.liuliyong.account.service.AccountService;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,11 +22,15 @@ import java.io.UnsupportedEncodingException;
 @RequestMapping(path = "/account")
 @Validated
 @Api(value = "Account", description = "账号操作")
+@CrossOrigin
 public class AccountOperationController {
     private static Logger logger = LoggerFactory.getLogger(AccountOperationController.class);
 
-    @Autowired
-    AccountService accountService;
+    private final AccountService accountService;
+
+    public AccountOperationController(AccountService accountService) {
+        this.accountService = accountService;
+    }
 
     @PostMapping
     @ApiOperation(value = "新增用户账户")
@@ -42,7 +45,7 @@ public class AccountOperationController {
     @ApiOperation(value = "修改用户账户信息")
     @CheckSessionId
     public AccountOperationResponse updateAccount(@RequestHeader String session_id, @RequestBody Account account, HttpServletResponse response) throws UnsupportedEncodingException {
-        AccountOperationResponse result = null;
+        AccountOperationResponse result;
         result = accountService.updateAccount(account);
         response.setStatus(200);
         logger.warn("收到修改用户账户请求，请求参数为==>" + account);
@@ -87,7 +90,7 @@ public class AccountOperationController {
     @NeedAdminAuth
     public AccountOperationResponse frozenAccount(@RequestHeader String session_id, @RequestParam("account_id") String accountId) {
         AccountOperationResponse result = accountService.frozeAccount(accountId);
-        logger.warn("冻结账户:", accountId);
+        logger.warn("冻结账户:${}", accountId);
         return result;
     }
 
@@ -97,7 +100,7 @@ public class AccountOperationController {
     @NeedAdminAuth
     public AccountOperationResponse unFrozenAccount(@RequestHeader String session_id, @RequestParam("account_id") String accountId) {
         AccountOperationResponse result = accountService.unfrozeAccount(accountId);
-        logger.warn("解冻账户:", accountId);
+        logger.warn("解冻账户:${}", accountId);
         return result;
     }
 }

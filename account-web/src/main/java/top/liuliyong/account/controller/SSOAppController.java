@@ -15,8 +15,8 @@ import top.liuliyong.account.sso.core.store.SsoSessionIdHelper;
 import top.liuliyong.account.sso.service.UserService;
 import top.liuliyong.account.common.response.AccountOperationResponse;
 import top.liuliyong.account.common.response.StatusEnum;
-import top.liuliyong.account.model.Account;
-import top.liuliyong.account.model.XxlSsoUser;
+import top.liuliyong.account.dao.model.Account;
+import top.liuliyong.account.dao.model.XxlSsoUser;
 import top.liuliyong.account.sso.annotation.SsoServer;
 import top.liuliyong.account.sso.config.SSOConf;
 
@@ -34,6 +34,7 @@ import java.util.UUID;
 @RequestMapping("/account")
 @Validated
 @Api(value = "SSO", description = "单点登录中心")
+@CrossOrigin
 public class SSOAppController {
 
     @Autowired
