@@ -17,6 +17,12 @@
             <version>0.0.1-SNAPSHOT</version>
             <artifactId>account-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>top.liuliyong</groupId>
+            <artifactId>account-repository</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 
