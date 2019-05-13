@@ -7,7 +7,7 @@ import top.liuliyong.account.common.response.AccountOperationResponse;
 import top.liuliyong.account.common.response.StatusEnum;
 import top.liuliyong.account.common.util.MD5Encoder;
 import top.liuliyong.account.dao.impl.AccountUserDao;
-import top.liuliyong.account.model.Account;
+import top.liuliyong.account.dao.model.Account;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 @Slf4j
 public class AccountService {
-    final AccountUserDao accountUserDao;
+    private final AccountUserDao accountUserDao;
 
     public AccountService(AccountUserDao accountUserDao) {
         this.accountUserDao = accountUserDao;
@@ -29,9 +29,6 @@ public class AccountService {
 
     /**
      * 新增账户
-     *
-     * @param account
-     * @return
      */
     public AccountOperationResponse addAccount(Account account) throws UnsupportedEncodingException {
         String account_id = account.getAccount_id();
@@ -53,9 +50,6 @@ public class AccountService {
 
     /**
      * 修改账户数据
-     *
-     * @param account
-     * @return
      */
     public AccountOperationResponse updateAccount(Account account) throws UnsupportedEncodingException {
         if (account == null || account.getAccount_id() == null || account.getAccount_id().trim().length() == 0) {
@@ -92,9 +86,6 @@ public class AccountService {
 
     /**
      * 通过account_id删除账户信息，可批量删除
-     *
-     * @param account_ids
-     * @return
      */
     public AccountOperationResponse deleteAccount(String... account_ids) {
         if (account_ids == null || account_ids.length == 0) {
@@ -106,9 +97,6 @@ public class AccountService {
 
     /**
      * 通过账户id查找账户信息
-     *
-     * @param account_id
-     * @return
      */
     public AccountOperationResponse findAccountByAccountId(String account_id) {
         if (account_id == null || account_id.length() == 0) {
@@ -120,8 +108,6 @@ public class AccountService {
 
     /**
      * 查找所有用户账户信息
-     *
-     * @return
      */
     public AccountOperationResponse findAllAccounts() {
         List result = accountUserDao.findAll();
