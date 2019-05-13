@@ -11,7 +11,7 @@ import top.liuliyong.account.common.response.AccountOperationResponse;
  * @Author liyong.liu
  * @Date 2019-04-25
  **/
-@FeignClient(name = "account-service")
+@FeignClient(name = "account-server")
 public interface AccountClient {
 
     @PostMapping("/account/logincheck")
@@ -19,5 +19,4 @@ public interface AccountClient {
 
     @GetMapping("/account")
     AccountOperationResponse findAccountByAccountId(@RequestHeader String session_id, @RequestParam String account_id);
-
 }
