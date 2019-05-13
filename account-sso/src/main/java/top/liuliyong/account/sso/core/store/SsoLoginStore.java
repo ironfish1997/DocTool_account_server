@@ -2,7 +2,7 @@ package top.liuliyong.account.sso.core.store;
 
 import top.liuliyong.account.sso.config.SSOConf;
 import top.liuliyong.account.common.util.JedisUtil;
-import top.liuliyong.account.model.XxlSsoUser;
+import top.liuliyong.account.dao.model.XxlSsoUser;
 
 /**
  * local login store

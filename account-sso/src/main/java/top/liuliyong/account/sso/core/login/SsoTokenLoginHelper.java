@@ -3,7 +3,7 @@ package top.liuliyong.account.sso.core.login;
 import top.liuliyong.account.sso.core.store.SsoLoginStore;
 import top.liuliyong.account.sso.core.store.SsoSessionIdHelper;
 import top.liuliyong.account.sso.config.SSOConf;
-import top.liuliyong.account.model.XxlSsoUser;
+import top.liuliyong.account.dao.model.XxlSsoUser;
 
 import javax.servlet.http.HttpServletRequest;
 

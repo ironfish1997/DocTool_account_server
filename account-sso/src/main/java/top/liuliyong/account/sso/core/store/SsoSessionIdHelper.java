@@ -1,6 +1,6 @@
 package top.liuliyong.account.sso.core.store;
 
-import top.liuliyong.account.model.XxlSsoUser;
+import top.liuliyong.account.dao.model.XxlSsoUser;
 
 /**
  * make client sessionId

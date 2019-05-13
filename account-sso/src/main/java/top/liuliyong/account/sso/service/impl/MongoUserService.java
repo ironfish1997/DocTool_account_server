@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import top.liuliyong.account.common.response.StatusEnum;
 import top.liuliyong.account.common.util.MD5Encoder;
 import top.liuliyong.account.dao.impl.AccountUserDao;
-import top.liuliyong.account.model.Account;
+import top.liuliyong.account.dao.model.Account;
 import top.liuliyong.account.sso.core.result.ReturnT;
 import top.liuliyong.account.sso.service.UserService;
 
