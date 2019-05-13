@@ -10,6 +10,7 @@
         <module>account-sms</module>
         <module>account-sso</module>
         <module>account-feignClient</module>
+        <module>account-repository</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
